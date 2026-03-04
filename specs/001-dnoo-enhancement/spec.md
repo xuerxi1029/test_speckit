@@ -277,9 +277,9 @@ flowchart TB
   %% --- Governance chain (roles) ---
   subgraph GOV[" "]
     direction TB
-    PEC_ROLE["PEC"]
-    PMO_ROLE["PMO (PAT)"]
-    PM_ROLE["Project Manager"]
+    PEC_ROLE["PEC<br/>Tony Kwok<br/>Manisha (Chair)<br/>Vivian Leung (GIS)<br/>CM Lok (ADMS)"]
+    PMO_ROLE["PMO (PAT)<br/>Mike Ng<br/>Kelvin Chan<br/>CK Chan (GIS)<br/>TBC (ADMS)"]
+    PM_ROLE["Project Manager<br/>Adrian Poon (Digital Project)<br/>Wong Lap Shun (GIS)<br/>Ho Kai On (ADMS)"]
     IT_ROLE["Implementation Team"]
     PEC_ROLE --> PMO_ROLE --> PM_ROLE --> IT_ROLE
   end
@@ -287,16 +287,19 @@ flowchart TB
   %% --- Delivery teams (arranged left-to-right to reduce crossings) ---
   subgraph TEAMS[" "]
     direction LR
-    ADMS_ROLE["ADMS Team"]
-    GIS_ROLE["GIS Team"]
-    INFRA_ROLE["DNOO Infra"]
-    EA_ROLE["Enterprise Architect"]
-    SEC_ROLE["Group Security"]
-    DATA_ROLE["Data Services"]
-    CUST_ROLE["System Custodian"]
-    OWNER_ROLE["System Owner"]
-    CM_ROLE["Change Management"]
+    ADMS_ROLE["ADMS Team<br/>Business PM: Ho Kai On<br/>Technical Lead: Human Tang (TBC)<br/>Engineer Lead: Phillip Tam; Frank Tong<br/>SME (Function and Business Improvement): Phillip Tam; Frank Tong<br/>Process Change (Change Management): Thomas Tam<br/>BA: TBC"]
+    GIS_ROLE["GIS Team<br/>Business PM: Wong Lap Shun<br/>Technical Lead: Ceci Chung; Jason Wu (TBC)<br/>Engineer Lead: Ricky Lee Lap Hung<br/>SME (Function and Business Improvement): Ricky Lee Lap Hung; Harvey Hung<br/>Process Change (Change Management): Thomas Tam<br/>BA: Karie Chan (SBA)"]
+    INFRA_ROLE["DNOO Infra<br/>Patrick Cheung (consultation)"]
+    EA_ROLE["Enterprise Architect<br/>Jimmy Chan (consultation)"]
+    SEC_ROLE["Group Security<br/>Dennis Ng (GIS)<br/>Dan Tung (ADMS)<br/>Franky Shiu (GIS and ADMS)"]
+    DATA_ROLE["Data Services<br/>Colin Cheng (TBC)"]
+    CUST_ROLE["System Custodian<br/>Kelvin Chan"]
+    OWNER_ROLE["System Owner<br/>Vivian Leung (GIS)<br/>CM Lok (ADMS)"]
+    CM_ROLE["Change Management<br/>Thomas Tam"]
   end
+
+  %% --- Vendor (placed to the right; dotted relationships) ---
+  V_ROLE["Vendor (SE)<br/>Jon Hew (PM)<br/>Kenny To (GIS Support)<br/>Alex Tong (Contract and Finance)<br/>SE team: Novi Sad, Serbia"]
 
   IT_ROLE --> ADMS_ROLE
   IT_ROLE --> GIS_ROLE
@@ -307,6 +310,9 @@ flowchart TB
   IT_ROLE --> CUST_ROLE
   IT_ROLE --> OWNER_ROLE
   IT_ROLE --> CM_ROLE
+
+  PM_ROLE -.-> V_ROLE
+  EA_ROLE -.-> V_ROLE
 
   %% --- Responsibilities (paired with each role) ---
   PEC_RESP["Oversight and direction<br/>Endorse major objective/milestone changes<br/>Advise on high-risk mitigations<br/>Approve customization items<br/>Resolve escalations from PMO (PAT)"]
@@ -324,6 +330,8 @@ flowchart TB
   OWNER_RESP["Review, conduct, and sign off tests<br/>(e.g., DAT)"]
   CM_RESP["Change management activities<br/>Rollout and ongoing support"]
 
+  V_RESP["Provide delivery and support services<br/>Project management support<br/>GIS support<br/>Contract and finance support"]
+
   %% Pair role + responsibilities (keep visually grouped)
   PEC_ROLE --> PEC_RESP
   PMO_ROLE --> PMO_RESP
@@ -339,6 +347,7 @@ flowchart TB
   CUST_ROLE --> CUST_RESP
   OWNER_ROLE --> OWNER_RESP
   CM_ROLE --> CM_RESP
+  V_ROLE --> V_RESP
 
   %% --- Styling ---
   classDef resp fill:#F2F4F7,stroke:#D0D5DD,color:#101828;
@@ -346,13 +355,16 @@ flowchart TB
   classDef roleL2 fill:#0F766E,stroke:#0F766E,color:#FFFFFF;
   classDef roleL3 fill:#B45309,stroke:#B45309,color:#FFFFFF;
   classDef roleL4 fill:#334155,stroke:#334155,color:#FFFFFF;
+  classDef vendor fill:#16A34A,stroke:#16A34A,color:#FFFFFF;
 
   class PEC_ROLE roleL1;
   class PMO_ROLE roleL2;
   class PM_ROLE,IT_ROLE roleL3;
   class ADMS_ROLE,GIS_ROLE,INFRA_ROLE,EA_ROLE,SEC_ROLE,DATA_ROLE,CUST_ROLE,OWNER_ROLE,CM_ROLE roleL4;
 
-  class PEC_RESP,PMO_RESP,PM_RESP,IT_RESP,ADMS_RESP,GIS_RESP,INFRA_RESP,EA_RESP,SEC_RESP,DATA_RESP,CUST_RESP,OWNER_RESP,CM_RESP resp;
+  class V_ROLE vendor;
+
+  class PEC_RESP,PMO_RESP,PM_RESP,IT_RESP,ADMS_RESP,GIS_RESP,INFRA_RESP,EA_RESP,SEC_RESP,DATA_RESP,CUST_RESP,OWNER_RESP,CM_RESP,V_RESP resp;
 
   %% Hide subgraph borders (visual polish)
   style GOV fill:transparent,stroke:transparent
@@ -362,6 +374,8 @@ flowchart TB
 #### Responsibilities by Role
 
 ##### PMO (PAT)
+
+**Name list**: Mike Ng; Kelvin Chan; CK Chan (GIS); TBC (ADMS)
 
 - Provide vision and guidance to the enhancement project implementation.
 - Provide project governance to the overall project implementation.
@@ -375,7 +389,9 @@ flowchart TB
 - Approve change requests.
 - Members attend meetings on a need basis (e.g., critical decisions, procurement stage, design & implementation stage).
 
-##### Project Execution Committee (PEC)
+##### Project Executive Committee (PEC)
+
+**Name list**: Tony Kwok; Manisha (Chair); Vivian Leung (GIS); CM Lok (ADMS)
 
 - Provide oversight, guidance, and direction to the DNOO project implementation.
 - Endorse significant changes to project objectives and milestones.
@@ -385,6 +401,8 @@ flowchart TB
 
 ##### Project Manager
 
+**Name list**: Adrian Poon (Digital Project); Wong Lap Shun (GIS); Ho Kai On (ADMS)
+
 - Lead and ensure the overall project is delivered to scope, schedule, budget, and quality.
 - Coordinate with the implementation team for implementation and testing.
 - Identify and manage risks.
@@ -392,6 +410,8 @@ flowchart TB
 - Review and prepare project execution-related compliance documents for endorsement.
 
 ##### Implementation Team (Overall)
+
+**Name list**: ADMS Team; GIS Team; DNOO Infra; Enterprise Architect; Group Security; Data Services; System Custodian; System Owner; Change Management
 
 - Execute implementation and enhancement work across the ADMS and GIS workstreams.
 - Identify and validate change requests.
@@ -402,39 +422,66 @@ flowchart TB
 
 ##### ADMS Team
 
+**Name list**: Business PM: Ho Kai On; Technical Lead: Human Tang (TBC); Engineer Lead: Phillip Tam; Frank Tong; SME (Function and Business Improvement): Phillip Tam; Frank Tong; Process Change (Change Management): Thomas Tam; BA: TBC
+
 - Lead and ensure ADMS deliverables and tasks are met on schedule, budget, and quality.
 
 ##### GIS Team
+
+**Name list**: Business PM: Wong Lap Shun; Technical Lead: Ceci Chung; Jason Wu (TBC); Engineer Lead: Ricky Lee Lap Hung; SME (Function and Business Improvement): Ricky Lee Lap Hung; Harvey Hung; Process Change (Change Management): Thomas Tam; BA: Karie Chan (SBA)
 
 - Update progress and escalate high-importance issues to PMO (PAT).
 
 ##### DNOO Infra
 
+**Name list**: Patrick Cheung (consultation)
+
 - Provide overall technical direction and key guidance to business and vendors.
 
 ##### Enterprise Architect
+
+**Name list**: Jimmy Chan (consultation)
 
 - Work and coordinate with the external vendor for implementation and testing.
 
 ##### Group Security
 
+**Name list**: Dennis Ng (GIS); Dan Tung (ADMS); Franky Shiu (GIS and ADMS)
+
 - Facilitate requirements workshops and deliver the architecture design.
 
 ##### Data Services
+
+**Name list**: Colin Cheng (TBC)
 
 - Provide user requirements; review and sign off functional specification.
 
 ##### System Custodian
 
+**Name list**: Kelvin Chan
+
 - Implement system and enhancement work.
 
 ##### System Owner
+
+**Name list**: Vivian Leung (GIS); CM Lok (ADMS)
 
 - Review, conduct, and sign off tests (e.g., DAT).
 
 ##### Change Management
 
+**Name list**: Thomas Tam
+
 - Support change management activities and ongoing operational support.
+
+##### Vendor (SE)
+
+**Name list**: Jon Hew (PM); Kenny To (GIS Support); Alex Tong (Contract and Finance); SE team: Novi Sad, Serbia
+
+- Provide delivery and support services.
+- Provide project management support.
+- Provide GIS support.
+- Provide contract and finance support.
 
 ### Risks
 
