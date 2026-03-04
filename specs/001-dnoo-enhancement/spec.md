@@ -274,93 +274,91 @@ This section summarizes project governance, reporting lines, and role responsibi
 ```mermaid
 flowchart TB
 
-  %% --- Governance chain (roles) ---
-  subgraph GOV[" "]
-    direction TB
-    PEC_ROLE["PEC<br/>Scope: GIS & ADMS<br/>Tony Kwok<br/>Manisha (Chair)<br/>Vivian Leung (GIS)<br/>CM Lok (ADMS)"]
-    PMO_ROLE["PMO (PAT)<br/>Scope: GIS & ADMS<br/>Mike Ng<br/>Kelvin Chan<br/>CK Chan (GIS)<br/>TBC (ADMS)"]
-    PM_ROLE["Project Manager<br/>Scope: GIS & ADMS<br/>Adrian Poon (Digital Project)<br/>Wong Lap Shun (GIS)<br/>Ho Kai On (ADMS)"]
-    IT_ROLE["Implementation Team<br/>Scope: GIS & ADMS"]
+  %% =========================
+  %% Governance (from screenshot)
+  %% =========================
+  PEC_ROLE["Project Executive Committee (PEC)<br/>Scope: GIS & ADMS<br/>Tony Kwok<br/>Manisha (Chair)<br/>Vivian Leung (GIS)<br/>CM Lok (ADMS)"]
+  PMO_ROLE["PMO (PAT)<br/>Scope: GIS & ADMS<br/>Mike Ng<br/>Kelvin Chan<br/>CK Chan (GIS)<br/>TBC (ADMS)"]
+  PM_ROLE["Project Manager<br/>Scope: GIS & ADMS<br/>Adrian Poon (Digital Project)<br/>Wong Lap Shun (GIS)<br/>Ho Kai On (ADMS)"]
 
-    PEC_ROLE -->|Governance - Oversight| PMO_ROLE
-    PMO_ROLE -->|Governance - Direction| PM_ROLE
-    PM_ROLE -->|Leads delivery| IT_ROLE
+  PEC_ROLE -- Governance - oversight --> PMO_ROLE
+  PMO_ROLE -- Governance - direction --> PM_ROLE
+
+  %% =========================
+  %% Workstreams (from screenshot)
+  %% =========================
+  subgraph WORKSTREAMS[" "]
+    direction LR
+    ADMS_ROLE["ADMS<br/>Scope: ADMS<br/>Business PM: Ho Kai On<br/>Technical Lead: Human Tang (TBC)<br/>Engineer Lead: Phillip Tam; Frank Tong<br/>SME Function/BI: Phillip Tam; Frank Tong<br/>Process Change: Thomas Tam<br/>BA: TBC"]
+    GIS_ROLE["GIS<br/>Scope: GIS<br/>Business PM: Wong Lap Shun<br/>Technical Lead: Ceci Chung; Jason Wu (TBC)<br/>Engineer Lead: Ricky Lee Lap Hung<br/>SME Function/BI: Ricky Lee Lap Hung; Harvey Hung<br/>Process Change: Thomas Tam<br/>BA: Karie Chan (SBA)"]
   end
 
-   # check for Spec Kit config folders
-  find /workspaces/test_speckit -maxdepth 4 -type d -name ".specify"
-  
-  # check whether a Spec Kit CLI is installed (if your workflow uses it)
-  command -v specify || echo "specify not found on PATH"
-  command -v spec-kit || echo "spec-kit not found on PATH" %% --- Delivery teams (arranged left-to-right to reduce crossings) ---
-  subgraph TEAMS[" "]
+  PM_ROLE -- Delivery - workstream oversight --> ADMS_ROLE
+  PM_ROLE -- Delivery - workstream oversight --> GIS_ROLE
+
+  %% =========================
+  %% Shared support functions (from screenshot)
+  %% =========================
+  SUPPORT_HUB["Shared support functions<br/>Scope: GIS & ADMS"]
+
+  subgraph SUPPORT[" "]
     direction LR
-    ADMS_ROLE["ADMS Team<br/>Scope: ADMS<br/>Business PM: Ho Kai On<br/>Technical Lead: Human Tang (TBC)<br/>Engineer Lead: Phillip Tam; Frank Tong<br/>SME (Function and Business Improvement): Phillip Tam; Frank Tong<br/>Process Change (Change Management): Thomas Tam<br/>BA: TBC"]
-    GIS_ROLE["GIS Team<br/>Scope: GIS<br/>Business PM: Wong Lap Shun<br/>Technical Lead: Ceci Chung; Jason Wu (TBC)<br/>Engineer Lead: Ricky Lee Lap Hung<br/>SME (Function and Business Improvement): Ricky Lee Lap Hung; Harvey Hung<br/>Process Change (Change Management): Thomas Tam<br/>BA: Karie Chan (SBA)"]
     INFRA_ROLE["DNOO Infra<br/>Scope: GIS & ADMS<br/>Patrick Cheung (consultation)"]
     EA_ROLE["Enterprise Architect<br/>Scope: GIS & ADMS<br/>Jimmy Chan (consultation)"]
-    SEC_ROLE["Group Security<br/>Scope: GIS & ADMS<br/>Dennis Ng (GIS)<br/>Dan Tung (ADMS)<br/>Franky Shiu (GIS and ADMS)"]
+    SEC_ROLE["Cyber Security (Group Security)<br/>Scope: GIS & ADMS<br/>Dennis Ng (GIS)<br/>Dan Tung (ADMS)<br/>Franky Shiu (GIS & ADMS)"]
     DATA_ROLE["Data Services<br/>Scope: GIS & ADMS<br/>Colin Cheng (TBC)"]
     CUST_ROLE["System Custodian<br/>Scope: GIS & ADMS<br/>Kelvin Chan"]
     OWNER_ROLE["System Owner<br/>Scope: GIS & ADMS<br/>Vivian Leung (GIS)<br/>CM Lok (ADMS)"]
-    CM_ROLE["Change Management<br/>Scope: GIS & ADMS<br/>Thomas Tam"]
   end
 
-  %% --- Vendor (kept to the right to avoid crossings) ---
-  subgraph VENDOR[" "]
-    direction LR
-    V_ROLE["Vendor (SE)<br/>Scope: GIS & ADMS<br/>Jon Hew (PM)<br/>Kenny To (GIS Support)<br/>Alex Tong (Contract and Finance)<br/>SE team: Novi Sad, Serbia"]
-  end
+  PM_ROLE -- Collaboration - consultation and support --> SUPPORT_HUB
+  SUPPORT_HUB --> INFRA_ROLE
+  SUPPORT_HUB --> EA_ROLE
+  SUPPORT_HUB --> SEC_ROLE
+  SUPPORT_HUB --> DATA_ROLE
+  SUPPORT_HUB --> CUST_ROLE
+  SUPPORT_HUB --> OWNER_ROLE
 
-  IT_ROLE -->|Workstream delivery| ADMS_ROLE
-  IT_ROLE -->|Workstream delivery| GIS_ROLE
-  IT_ROLE -->|Consultation| INFRA_ROLE
-  IT_ROLE -->|Architecture support| EA_ROLE
-  IT_ROLE -->|Security assurance| SEC_ROLE
-  IT_ROLE -->|Data requirements| DATA_ROLE
-  IT_ROLE -->|Build - configuration| CUST_ROLE
-  IT_ROLE -->|Test sign-off| OWNER_ROLE
-  IT_ROLE -->|Org change - rollout| CM_ROLE
+  %% =========================
+  %% Vendor (from screenshot)
+  %% =========================
+  V_ROLE["Vendor (SE)<br/>Scope: GIS & ADMS<br/>Jon Hew (PM)<br/>Kenny To (GIS Support)<br/>Alex Tong (Contract/Finance)<br/>SE team in Novi Sad, Serbia"]
 
-  PM_ROLE -.->|Collaboration - delivery coordination| V_ROLE
-  EA_ROLE -.->|Collaboration - implementation and testing| V_ROLE
+  PM_ROLE -. Collaboration - delivery coordination .-> V_ROLE
+  EA_ROLE -. Collaboration - implementation and testing .-> V_ROLE
 
-  %% --- Responsibilities (paired with each role) ---
-  PEC_RESP["Oversight and direction<br/>Endorse major objective/milestone changes<br/>Advise on high-risk mitigations<br/>Approve customization items<br/>Resolve escalations from PMO (PAT)"]
-  PMO_RESP["Project governance (scope/budget/time)<br/>Sign off quality plan, risk assessment, specs<br/>Approve change requests<br/>Assure compliance documents endorsed<br/>Manage risk registers and escalations"]
-  PM_RESP["Deliver scope/schedule/budget/quality<br/>Coordinate implementation and testing<br/>Identify and manage risks<br/>Report progress and escalate issues<br/>Prepare compliance documents"]
-  IT_RESP["Execute enhancements (ADMS/GIS)<br/>Validate change requests<br/>Consolidate user feedback<br/>Initiate process changes<br/>Provide ongoing support"]
+  %% =========================
+  %% Responsibilities (from R&R CSV)
+  %% =========================
+  PEC_RESP["Responsibilities (R&R)<br/>Provide oversight, guidance, and direction to the DNOO project implementation<br/>Endorse significant changes on the project objectives and milestone<br/>Provide advice on high risk items and mitigation measures<br/>Resolve issue as escalated by Project Assurance Team / Project Execution Committee<br/>Approval of the customization items"]
+  PMO_RESP["Responsibilities (R&R)<br/>Provide vision and guidance to the Enhancement project implementation<br/>Provide project governance to the overall project implementation<br/>Decide on matters of scope, budget and timeframe<br/>Ensure all milestones being met on schedule, budget and quality<br/>Identify, manage and update the overall risk registers<br/>Provide advice on high risk items and mitigation measures<br/>Resolve issue as escalated by Project Assurance Team<br/>Signoff quality plan, risk assessment, functional and technical specification<br/>Assure all the project execution related compliance documents being endorsed<br/>Approve Change Request<br/>Members will attend meetings on a need basis"]
+  PM_RESP["Responsibilities (R&R)<br/>Lead and ensure the overall project met on scope, schedule, budget and quality<br/>Work and co-ordinate with the implementation team for implementation and testing<br/>Identify and manage risks<br/>Update progress and escalate issue of high importance to PAT/PEC<br/>Review and prepare all the project execution related compliance documents being endorsed"]
 
-  ADMS_RESP["Lead and ensure ADMS deliverables/tasks<br/>Meet schedule, budget, and quality"]
-  GIS_RESP["Update progress<br/>Escalate high-importance issues to PMO (PAT)"]
-  INFRA_RESP["Provide technical direction<br/>Guide business and vendors"]
-  EA_RESP["Coordinate with external vendor<br/>Support implementation and testing"]
-  SEC_RESP["Facilitate requirements workshops<br/>Deliver architecture design"]
-  DATA_RESP["Provide user requirements<br/>Review and sign off functional specification"]
-  CUST_RESP["Implement system/enhancement work"]
-  OWNER_RESP["Review, conduct, and sign off tests<br/>(e.g., DAT)"]
-  CM_RESP["Change management activities<br/>Rollout and ongoing support"]
+  ADMS_RESP["Responsibilities (R&R)<br/>Lead and ensure the respective project deliverables and tasks met on schedule, budget and quality"]
+  GIS_RESP["Responsibilities (R&R)<br/>Update progress and escalate issue of high importance to PAT"]
+  INFRA_RESP["Responsibilities (R&R)<br/>Provide overall technical direction and key guidance to business and vendors"]
+  EA_RESP["Responsibilities (R&R)<br/>Work and co-ordinate with the external vendor for implementation and testing"]
+  SEC_RESP2["Responsibilities (R&R)<br/>Facilitate requirements workshop and deliver the architecture design"]
+  DATA_RESP["Responsibilities (R&R)<br/>Provide user requirement, review and signoff functional specification"]
+  CUST_RESP["Responsibilities (R&R)<br/>Implementation of system/ enhancement work"]
+  OWNER_RESP["Responsibilities (R&R)<br/>Review, conduct & sign off test such as DAT"]
 
-  V_RESP["Provide delivery and support services<br/>Project management support<br/>GIS support<br/>Contract and finance support"]
-
-  %% Pair role + responsibilities (keep visually grouped)
   PEC_ROLE --> PEC_RESP
   PMO_ROLE --> PMO_RESP
   PM_ROLE --> PM_RESP
-  IT_ROLE --> IT_RESP
 
   ADMS_ROLE --> ADMS_RESP
   GIS_ROLE --> GIS_RESP
   INFRA_ROLE --> INFRA_RESP
   EA_ROLE --> EA_RESP
-  SEC_ROLE --> SEC_RESP
+  SEC_ROLE --> SEC_RESP2
   DATA_ROLE --> DATA_RESP
   CUST_ROLE --> CUST_RESP
   OWNER_ROLE --> OWNER_RESP
-  CM_ROLE --> CM_RESP
-  V_ROLE --> V_RESP
 
-  %% --- Styling ---
+  %% =========================
+  %% Styling (roles vs responsibilities)
+  %% =========================
   classDef resp fill:#F2F4F7,stroke:#D0D5DD,color:#101828;
   classDef roleL1 fill:#1D4ED8,stroke:#1D4ED8,color:#FFFFFF;
   classDef roleL2 fill:#0F766E,stroke:#0F766E,color:#FFFFFF;
@@ -370,17 +368,15 @@ flowchart TB
 
   class PEC_ROLE roleL1;
   class PMO_ROLE roleL2;
-  class PM_ROLE,IT_ROLE roleL3;
-  class ADMS_ROLE,GIS_ROLE,INFRA_ROLE,EA_ROLE,SEC_ROLE,DATA_ROLE,CUST_ROLE,OWNER_ROLE,CM_ROLE roleL4;
-
+  class PM_ROLE roleL3;
+  class ADMS_ROLE,GIS_ROLE,SUPPORT_HUB,INFRA_ROLE,EA_ROLE,SEC_ROLE,DATA_ROLE,CUST_ROLE,OWNER_ROLE roleL4;
   class V_ROLE vendor;
 
-  class PEC_RESP,PMO_RESP,PM_RESP,IT_RESP,ADMS_RESP,GIS_RESP,INFRA_RESP,EA_RESP,SEC_RESP,DATA_RESP,CUST_RESP,OWNER_RESP,CM_RESP,V_RESP resp;
+  class PEC_RESP,PMO_RESP,PM_RESP,ADMS_RESP,GIS_RESP,INFRA_RESP,EA_RESP,SEC_RESP2,DATA_RESP,CUST_RESP,OWNER_RESP resp;
 
-  %% Hide subgraph borders (visual polish)
-  style GOV fill:transparent,stroke:transparent
-  style TEAMS fill:transparent,stroke:transparent
-  style VENDOR fill:transparent,stroke:transparent
+  %% Visual polish
+  style WORKSTREAMS fill:transparent,stroke:transparent
+  style SUPPORT fill:transparent,stroke:transparent
 ```
 
 #### Responsibilities by Role
@@ -397,9 +393,10 @@ flowchart TB
 - Ensure milestones are met on schedule, budget, and quality.
 - Identify, manage, and update the overall risk registers.
 - Provide advice on high-risk items and mitigation measures.
-- Resolve issues as escalated (project assurance / escalations).
-- Sign off quality plan, risk assessment, functional specification, and technical specification.
-- Assure all project execution-related compliance documents are endorsed.
+- Align and resolve issues as escalated by each project champion.
+- Resolve issue as escalated by Project Assurance Team.
+- Signoff quality plan, risk assessment, functional and technical specification.
+- Assure all the project execution related compliance documents being endorsed.
 - Approve change requests.
 - Members attend meetings on a need basis (e.g., critical decisions, procurement stage, design & implementation stage).
 
@@ -412,7 +409,7 @@ flowchart TB
 - Provide oversight, guidance, and direction to the DNOO project implementation.
 - Endorse significant changes to project objectives and milestones.
 - Provide advice on high-risk items and mitigation measures.
-- Resolve issues as escalated by PMO (PAT).
+- Resolve issue as escalated by Project Assurance Team / Project Execution Committee.
 - Approve customization items.
 
 ##### Project Manager
@@ -421,24 +418,23 @@ flowchart TB
 
 **Name list**: Adrian Poon (Digital Project); Wong Lap Shun (GIS); Ho Kai On (ADMS)
 
-- Lead and ensure the overall project is delivered to scope, schedule, budget, and quality.
-- Coordinate with the implementation team for implementation and testing.
+- Lead and ensure the overall project met on scope, schedule, budget and quality.
+- Work and co-ordinate with the implementation team for implementation and testing.
 - Identify and manage risks.
-- Update progress and escalate high-importance issues to PMO (PAT) / PEC.
-- Review and prepare project execution-related compliance documents for endorsement.
+- Update progress and escalate issue of high importance to PAT/PEC.
+- Review and prepare all the project execution related compliance documents being endorsed.
 
 ##### Implementation Team (Overall)
 
 **Scope**: GIS & ADMS
 
-**Name list**: ADMS Team; GIS Team; DNOO Infra; Enterprise Architect; Group Security; Data Services; System Custodian; System Owner; Change Management
+**Name list**: ADMS Team; GIS Team; DNOO Infra; Enterprise Architect; Cyber Security (Group Security); Data Services; System Custodian; System Owner
 
-- Execute implementation and enhancement work across the ADMS and GIS workstreams.
-- Identify and validate change requests.
-- Collect and consolidate user feedback.
-- Review and initiate process changes.
-- Identify and manage delivery risks.
-- Provide ongoing support.
+- Identify & validate change requests.
+- Collect and consolidate the feedback from the users.
+- Review and initiate the process changes.
+- Identify the risks.
+- Provide on-going support.
 
 ##### ADMS Team
 
@@ -446,7 +442,7 @@ flowchart TB
 
 **Name list**: Business PM: Ho Kai On; Technical Lead: Human Tang (TBC); Engineer Lead: Phillip Tam; Frank Tong; SME (Function and Business Improvement): Phillip Tam; Frank Tong; Process Change (Change Management): Thomas Tam; BA: TBC
 
-- Lead and ensure ADMS deliverables and tasks are met on schedule, budget, and quality.
+- Lead and ensure the respective project deliverables and tasks met on schedule, budget and quality.
 
 ##### GIS Team
 
@@ -454,7 +450,7 @@ flowchart TB
 
 **Name list**: Business PM: Wong Lap Shun; Technical Lead: Ceci Chung; Jason Wu (TBC); Engineer Lead: Ricky Lee Lap Hung; SME (Function and Business Improvement): Ricky Lee Lap Hung; Harvey Hung; Process Change (Change Management): Thomas Tam; BA: Karie Chan (SBA)
 
-- Update progress and escalate high-importance issues to PMO (PAT).
+- Update progress and escalate issue of high importance to PAT.
 
 ##### DNOO Infra
 
@@ -470,7 +466,7 @@ flowchart TB
 
 **Name list**: Jimmy Chan (consultation)
 
-- Work and coordinate with the external vendor for implementation and testing.
+- Work and co-ordinate with the external vendor for implementation and testing.
 
 ##### Group Security
 
@@ -478,7 +474,7 @@ flowchart TB
 
 **Name list**: Dennis Ng (GIS); Dan Tung (ADMS); Franky Shiu (GIS and ADMS)
 
-- Facilitate requirements workshops and deliver the architecture design.
+- Facilitate requirements workshop and deliver the architecture design.
 
 ##### Data Services
 
@@ -486,7 +482,7 @@ flowchart TB
 
 **Name list**: Colin Cheng (TBC)
 
-- Provide user requirements; review and sign off functional specification.
+- Provide user requirement, review and signoff functional specification.
 
 ##### System Custodian
 
@@ -494,7 +490,7 @@ flowchart TB
 
 **Name list**: Kelvin Chan
 
-- Implement system and enhancement work.
+- Implementation of system/ enhancement work.
 
 ##### System Owner
 
@@ -502,15 +498,7 @@ flowchart TB
 
 **Name list**: Vivian Leung (GIS); CM Lok (ADMS)
 
-- Review, conduct, and sign off tests (e.g., DAT).
-
-##### Change Management
-
-**Scope**: GIS & ADMS
-
-**Name list**: Thomas Tam
-
-- Support change management activities and ongoing operational support.
+- Review, conduct & sign off test such as DAT.
 
 ##### Vendor (SE)
 
@@ -518,10 +506,7 @@ flowchart TB
 
 **Name list**: Jon Hew (PM); Kenny To (GIS Support); Alex Tong (Contract and Finance); SE team: Novi Sad, Serbia
 
-- Provide delivery and support services.
-- Provide project management support.
-- Provide GIS support.
-- Provide contract and finance support.
+**Responsibilities**: _Not specified in the pasted org chart screenshot or R&R CSV._
 
 ### Risks
 
