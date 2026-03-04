@@ -271,23 +271,93 @@ This section summarizes project governance, reporting lines, and role responsibi
 
 #### Organization Chart
 
-```text
-PEC (Project Execution Committee)
-└─ PMO (PAT)
-  └─ Project Manager
-    └─ Implementation Team
-      ├─ ADMS Team
-      ├─ GIS Team
-      ├─ DNOO Infra
-      ├─ Enterprise Architect
-      ├─ Group Security
-      ├─ Data Services
-      ├─ System Custodian
-      ├─ System Owner
-      └─ Change Management
-```
+```mermaid
+flowchart TB
 
-Escalation path (when needed): Implementation Team → Project Manager → PMO (PAT) → PEC.
+  %% --- Governance chain (roles) ---
+  subgraph GOV[" "]
+    direction TB
+    PEC_ROLE["PEC"]
+    PMO_ROLE["PMO (PAT)"]
+    PM_ROLE["Project Manager"]
+    IT_ROLE["Implementation Team"]
+    PEC_ROLE --> PMO_ROLE --> PM_ROLE --> IT_ROLE
+  end
+
+  %% --- Delivery teams (arranged left-to-right to reduce crossings) ---
+  subgraph TEAMS[" "]
+    direction LR
+    ADMS_ROLE["ADMS Team"]
+    GIS_ROLE["GIS Team"]
+    INFRA_ROLE["DNOO Infra"]
+    EA_ROLE["Enterprise Architect"]
+    SEC_ROLE["Group Security"]
+    DATA_ROLE["Data Services"]
+    CUST_ROLE["System Custodian"]
+    OWNER_ROLE["System Owner"]
+    CM_ROLE["Change Management"]
+  end
+
+  IT_ROLE --> ADMS_ROLE
+  IT_ROLE --> GIS_ROLE
+  IT_ROLE --> INFRA_ROLE
+  IT_ROLE --> EA_ROLE
+  IT_ROLE --> SEC_ROLE
+  IT_ROLE --> DATA_ROLE
+  IT_ROLE --> CUST_ROLE
+  IT_ROLE --> OWNER_ROLE
+  IT_ROLE --> CM_ROLE
+
+  %% --- Responsibilities (paired with each role) ---
+  PEC_RESP["Oversight and direction<br/>Endorse major objective/milestone changes<br/>Advise on high-risk mitigations<br/>Approve customization items<br/>Resolve escalations from PMO (PAT)"]
+  PMO_RESP["Project governance (scope/budget/time)<br/>Sign off quality plan, risk assessment, specs<br/>Approve change requests<br/>Assure compliance documents endorsed<br/>Manage risk registers and escalations"]
+  PM_RESP["Deliver scope/schedule/budget/quality<br/>Coordinate implementation and testing<br/>Identify and manage risks<br/>Report progress and escalate issues<br/>Prepare compliance documents"]
+  IT_RESP["Execute enhancements (ADMS/GIS)<br/>Validate change requests<br/>Consolidate user feedback<br/>Initiate process changes<br/>Provide ongoing support"]
+
+  ADMS_RESP["Lead and ensure ADMS deliverables/tasks<br/>Meet schedule, budget, and quality"]
+  GIS_RESP["Update progress<br/>Escalate high-importance issues to PMO (PAT)"]
+  INFRA_RESP["Provide technical direction<br/>Guide business and vendors"]
+  EA_RESP["Coordinate with external vendor<br/>Support implementation and testing"]
+  SEC_RESP["Facilitate requirements workshops<br/>Deliver architecture design"]
+  DATA_RESP["Provide user requirements<br/>Review and sign off functional specification"]
+  CUST_RESP["Implement system/enhancement work"]
+  OWNER_RESP["Review, conduct, and sign off tests<br/>(e.g., DAT)"]
+  CM_RESP["Change management activities<br/>Rollout and ongoing support"]
+
+  %% Pair role + responsibilities (keep visually grouped)
+  PEC_ROLE --> PEC_RESP
+  PMO_ROLE --> PMO_RESP
+  PM_ROLE --> PM_RESP
+  IT_ROLE --> IT_RESP
+
+  ADMS_ROLE --> ADMS_RESP
+  GIS_ROLE --> GIS_RESP
+  INFRA_ROLE --> INFRA_RESP
+  EA_ROLE --> EA_RESP
+  SEC_ROLE --> SEC_RESP
+  DATA_ROLE --> DATA_RESP
+  CUST_ROLE --> CUST_RESP
+  OWNER_ROLE --> OWNER_RESP
+  CM_ROLE --> CM_RESP
+
+  %% --- Styling ---
+  classDef resp fill:#F2F4F7,stroke:#D0D5DD,color:#101828;
+  classDef roleL1 fill:#1D4ED8,stroke:#1D4ED8,color:#FFFFFF;
+  classDef roleL2 fill:#0F766E,stroke:#0F766E,color:#FFFFFF;
+  classDef roleL3 fill:#B45309,stroke:#B45309,color:#FFFFFF;
+  classDef roleL4 fill:#334155,stroke:#334155,color:#FFFFFF;
+
+  class PEC_ROLE roleL1;
+  class PMO_ROLE roleL2;
+  class PM_ROLE,IT_ROLE roleL3;
+  class ADMS_ROLE,GIS_ROLE,INFRA_ROLE,EA_ROLE,SEC_ROLE,DATA_ROLE,CUST_ROLE,OWNER_ROLE,CM_ROLE roleL4;
+
+  class PEC_RESP,PMO_RESP,PM_RESP,IT_RESP,ADMS_RESP,GIS_RESP,INFRA_RESP,EA_RESP,SEC_RESP,DATA_RESP,CUST_RESP,OWNER_RESP,CM_RESP resp;
+
+  %% Hide subgraph borders (visual polish)
+  style GOV fill:transparent,stroke:transparent
+  style TEAMS fill:transparent,stroke:transparent
+```
 
 #### Responsibilities by Role
 
