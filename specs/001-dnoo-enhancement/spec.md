@@ -33,9 +33,7 @@ This enhancement initiative is positioned to:
 - Support strategic developments such as the introduction of the 22kV network
 - Eliminate high-effort manual workarounds that increase risk to data integrity and system performance
 
-### Goals
-
-<!-- Draft goals based on the background above; refine as scope is confirmed -->
+### Overall Goals
 
 - Close priority functionality gaps versus the legacy GIS.
 - Implement newly triggered business process and regulatory requirements.
@@ -43,6 +41,13 @@ This enhancement initiative is positioned to:
 - Protect data integrity and system performance by removing workaround-driven processes.
 - Ensure GIS remains robust and future-proof while continuing to support ADMS integration.
 - Enable strategic network developments (including introduction of the 22kV network).
+
+### Out of Scope (Constraints)
+
+- Fixing legacy data issues not addressed in the original project.
+- Enhancements directly triggered by the Enlight (ERP) project.
+- Tasks considered as product enhancement or unfinished bugs from the original GIS project.
+- Broader system integration beyond GIS and ADMS.
 
 ### Deliverables
 
@@ -80,34 +85,331 @@ The 2026 Enhancement Project for GIS will deliver a comprehensive set of enhance
 - Development of a workflow to export relevant landbase information with each permit application.
 - Implementation of a mechanism for more frequent or real-time updates of landbase data from the Lands Department.
 
+通俗版说明：（挖掘许可证申请优化）
+让挖掘许可证的申请少靠人记、少查资料、资料更准确。
+
+把不同类型的土地资料统一整合进 GIS
+
+GIS（Geographic Information System）：一个用地图方式管理土地、设施和位置资料的系统
+包括：
+
+私人地段（private lot）
+GLL（Government Land Licenses）：政府发出的临时土地使用许可
+GLA（Government Land Allocations）：政府分配的土地使用安排
+STT（Short Term Tenancies）：短期租用政府土地
+项目施工范围（project limits）
+
+建立一套流程：
+👉 每次提交挖掘许可证时，系统会自动把相关土地资料一起导出，不用再人工拼资料。
+
+从 Lands Department（地政总署）更频密、甚至接近实时地更新土地资料，
+👉 减少“用旧资料申请”的风险。
+
+
 2. Circuit Reporting Enhancements
 - Implementation of logic to automatically adjust segment length proportionally when electric lines are split or vertices are edited.
 - Default assignment of segment length equal to sharp length upon circuit creation, with user override capability.
 - Development of circuit analysis report to facilitate a structured and risk‑based approach to 11 kV cable and joint replacement planning.
 
+通俗版说明：（线路与回路报表优化）
+让电缆线路的数据自动算对、少出错、方便做风险分析。
+
+
+当一条电线被拆分，或地图上的转折点（vertices）被修改时，
+👉 系统会自动按比例调整每一段的长度，不用人工重算。
+
+
+新建 circuit（电力回路）时：
+
+系统默认用 sharp length 作为 segment length
+使用者仍然可以手动修改
+
+
+sharp length：按电缆实际铺设路径计算的长度（不是直线距离）
+segment length: 一段线路（segment）的长度 (一条电缆或线路，被切成一小段之后，这一小段本身有多长)
+
+
+建立一份 circuit analysis report（回路分析报告），
+👉 用来支持 11 kV 电缆和接头（joint）更换计划，
+👉 做到有结构、有风险优先次序，而不是凭经验决定。
+
 3. Common Cable Infrastructure (CCI) Inventory Automation
 - Establishment of containment relationships between CCI assets (e.g., cable bridges, tunnels) and the circuits they contain.
 - Automation of inventory updates and report generation based on GIS data changes.
 
+（CCI 公共电缆设施资产自动化管理）
+通俗版说明：
+让系统知道：哪条电缆在哪个通道里，不用人工对表。
+
+
+在系统中建立 CCI 资产 和 电力回路（circuits） 之间的“包含关系”：
+
+例如：
+
+cable bridge（电缆桥）
+tunnel（隧道）
+里面实际装了哪些电缆
+
+
+当 GIS 里的资料有更新时：
+👉 库存数据和相关报表会自动更新并重新生成，
+👉 减少人工维护资产清单。
+
 4. 22kV Network Configuration
 - Configuration of GIS to support 22kV network visualization, including symbology and equipment catalogues.
 - Update of network model parameters to accommodate 22kV assets and operations.
+
+（22kV 电网配置支持）
+通俗版说明：
+让系统“看得懂、画得出、管得到”22kV 电网。
+
+
+配置 GIS，让它可以正确显示 22kV 网络，包括：
+
+线路图样（symbology）
+设备目录（equipment catalogues）
+
+
+更新 network model（电网模型）的参数，
+👉 确保系统在分析和操作上，能正确支持 22kV 设备和运行方式。
 
 5. Automation of High-Impact Manual Workarounds
 - Development of functionality to automatically generate Name and Alias fields used by ADMS.
 - Identification and implementation of other high-effort manual processes that can be automated within GIS.
 - Implementing a centralized session monitoring mechanism for ArcGIS to allow users tracking the status of their sessions after submission and approval.
 
+（高影响人工 workaround 的自动化）
+通俗版说明：
+把现在最花人力、最容易出错的“人工顶着做”流程自动化。
 
-- [TBD]
 
-### Non-Goals
+自动生成 Name 和 Alias fields，供 ADMS 使用
 
-<!-- Explicitly list what is out of scope -->
+ADMS（Advanced Distribution Management System）：用于配电网络运行、监控和调度的系统
+Alias field：给系统用的“别名字段”，让不同系统之间能对得上字段名称
 
-### Assumptions & Constraints
 
-<!-- Constraints: timeline, dependencies, policies, platforms, etc. -->
+找出其他目前很花人力、但可以自动化的 GIS 操作流程，并逐步实现自动化。
+
+在 ArcGIS 中建立一个统一的 session 监控机制：
+
+session：用户一次提交或操作的系统处理过程
+👉 用户在提交和审批之后，可以清楚看到：
+
+
+自己的处理进度
+是否还在跑
+有没有出问题
+而不是“交了之后只能等”。
+
+##### Detailed Objectives
+
+The GIS enhancement scope is designed with a clear set of objectives aligned to both business needs and regulatory mandates:
+
+a) **Address Newly Triggered Regulatory Requirements**
+
+- Recent changes in regulatory expectations—particularly around excavation permit applications and Common Cable Infrastructure (CCI) monitoring—require enhancements to GIS capabilities.
+- The project will ensure GIS can support real-time landbase updates, integrate private lot data, and automate inventory tracking of CCI assets to meet compliance standards.
+
+b) **Improve Operational Efficiency and Data Integrity**
+
+- Manual workarounds adopted during the original project continue to impact productivity and data quality.
+- Example: the lack of automated generation of Name and Alias fields used by ADMS requires significant manual effort and increases the risk of human error.
+- The enhancement project will automate these processes, reducing operational overhead and improving system reliability.
+
+c) **Support Strategic Network Development Initiatives**
+
+- The company is preparing to introduce a 22kV network.
+- While the original GIS project considered this in its data model design, additional configuration is required to fully support the new network (e.g., symbology, new equipment catalogues, and configuration parameter updates).
+
+d) **Replace High-Effort Workarounds with Sustainable Solutions**
+
+- Some requirements were deferred during the original project because they could not be realized using out-of-the-box GIS solutions.
+- These were categorized as vendor “enhancements” and require custom development.
+- The enhancement project will selectively implement those with the highest operational impact, replacing manual processes with automated, sustainable solutions.
+
+e) **Ensure Continued Alignment with Business and Regulatory Evolution**
+
+- As business processes evolve and regulatory requirements change, GIS must remain adaptable and responsive.
+- The enhancement project positions GIS as a dynamic platform capable of continual improvement, rather than a static system frozen at its initial implementation state.
+
+##### High-Level Timeline
+
+| Phase / Workstream | M-2 | M-1 | M | M2 | M3 | M4 | M5 | M6 | M7 | M8 | M9 | M10 | M11 | M12 | M+1 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Phase 1: Planning & Design | ■ | ■ | ■ |  |  |  |  |  |  |  |  |  |  |  |  |
+| Phase 2: Development & Configuration |  |  |  | ■ | ■ | ■ | ■ | ■ | ■ |  |  |  |  |  |  |
+| Phase 3: Testing & Validation (SIT/UAT/Pen Test) |  |  |  |  |  |  | ■ | ■ | ■ | ■ | ■ | ■ |  |  |  |
+| Enlight freeze period (TBC) |  |  |  |  | ■ | ■ | ■ | ■ | ■ |  |  |  |  |  |  |
+| Phase 4: Pilot Deployment (22kV trial) |  |  |  |  |  |  |  |  |  |  |  |  | ■ | ■ | ■ |
+| Full Deployment & Optimization |  |  |  |  |  |  |  |  |  |  |  |  | ■ | ■ | ■ |
+| BAU / Scale-up |  |  |  |  |  |  |  |  |  |  |  |  |  |  | ■ |
+
+
+
+### Assumptions 
+
+#### As-Is Assumption
+
+Current operations in the DNOO environment rely on the assumption that manual workarounds are sufficient to address system limitations and unresolved issues. These workarounds are embedded in day-to-day processes and are relied upon to maintain business continuity.
+
+#### Key Risks and Illustrative Examples
+
+- **Operational inefficiency**: Staff are required to process supply point and meter associations individually due to the absence of a bulk processing capability. This creates significant recurring manual effort and increases the risk of error.
+- **Risk to business continuity and compliance**: Switching Order Management remains a manual process, exposing the organization to potential supply interruptions and operational incidents because automation is not available to reliably support these critical functions.
+- **Data integrity and decision-making**: Manual updates to cable segments and duct bank data patching are necessary to maintain data quality, but these interventions can lead to inconsistencies and incomplete records, impacting asset management and regulatory reporting.
+- **Employee experience and organizational morale**: Users must perform repetitive, complex tasks such as updating asset attributes and migrating hyperlinks for supply points. This increases frustration and support demand and can negatively affect morale.
+- **Delayed digital transformation**: Limited automation means integration and improved service delivery are not fully realized. Examples include the absence of a readable LV schematic and continued manual data patching for regulatory reports.
+
+#### As-Is Conclusion
+
+Continuing to rely on manual workarounds assumes that temporary solutions are sustainable for ongoing operations. In practice, this perpetuates inefficiency, increases risk exposure, and constrains the organization’s ability to achieve strategic objectives. Transitioning to robust, automated solutions through the DNOO enhancement is necessary to address these risks and support future growth.
+
+### Project Governance & Organization
+
+This section summarizes project governance, reporting lines, and role responsibilities based on the Roles & Responsibilities (R&R) table.
+
+#### Organization Chart
+
+```mermaid
+flowchart TD
+  PSC[DNOO Project Steering Committee (PSC)]
+  PEC[Project Execution Committee (PEC)]
+  PMO[PMO]
+  PAT[Project Assurance Team (PAT)]
+
+  PM[Project Manager]
+  IT[Implementation Team]
+
+  ADMS[ADMS Team]
+  GIS[GIS Team]
+  INFRA[DNOO Infra]
+  EA[Enterprise Architect]
+  SEC[Group Security]
+  DATA[Data Services]
+  CUST[System Custodian]
+  OWNER[System Owner]
+  CM[Change Management]
+
+  %% Primary reporting line
+  PEC --> PMO --> PM --> IT
+  IT --> ADMS
+  IT --> GIS
+  IT --> INFRA
+  IT --> EA
+  IT --> SEC
+  IT --> DATA
+  IT --> CUST
+  IT --> OWNER
+  IT --> CM
+
+  %% Governance / assurance relationships (as referenced in the R&R escalation paths)
+  PSC -. "oversight" .-> PEC
+  PAT -. "assurance / escalations" .-> PMO
+  PAT -. "escalations" .-> PEC
+```
+
+#### Responsibilities by Role
+
+##### DNOO Project Steering Committee (PSC)
+
+- Provide steering-level oversight as part of the governance escalation path.
+- Receive progress updates and high-importance issue escalations (via PMO) as required.
+
+##### Project Assurance Team (PAT)
+
+- Act as a project assurance and escalation channel for high-importance issues.
+- Escalate issues to PMO and/or PEC as required.
+
+##### Project Execution Committee (PEC)
+
+- Provide oversight, guidance, and direction to the DNOO project implementation.
+- Endorse significant changes to project objectives and milestones.
+- Provide advice on high-risk items and mitigation measures.
+- Resolve issues as escalated by the Project Assurance Team (PAT) / Project Execution Committee.
+- Approve customization items.
+
+##### PMO
+
+- Provide vision and guidance to the enhancement project implementation.
+- Provide advice on high-risk items and mitigation measures.
+- Resolve issues as escalated by the Project Assurance Team (PAT).
+- Sign off quality plan, risk assessment, functional specification, and technical specification.
+- Assure project execution-related compliance documents are endorsed.
+- Approve change requests.
+- Provide project governance to the overall project implementation.
+- Decide on matters of scope, budget, and timeframe.
+- Ensure milestones are met on schedule, budget, and quality.
+- Align and resolve issues escalated by each project champion.
+- Update progress and escalate high-importance issues to DNOO PSC/PEC.
+- Identify, manage, and maintain the overall risk register.
+
+##### Project Manager
+
+- Lead and ensure the overall project is delivered to scope, schedule, budget, and quality.
+- Coordinate with the implementation team for implementation and testing.
+- Identify and manage risks.
+- Update progress and escalate high-importance issues to PAT/PEC/PSC.
+- Review and prepare project execution-related compliance documents for endorsement.
+
+##### Implementation Team (Overall)
+
+- Execute implementation and enhancement work across the ADMS and GIS workstreams.
+- Identify and validate change requests.
+- Collect and consolidate user feedback.
+- Review and initiate process changes.
+- Identify and manage delivery risks.
+- Provide ongoing support.
+
+##### ADMS Team
+
+- Lead and ensure ADMS deliverables and tasks are met on schedule, budget, and quality.
+
+##### GIS Team
+
+- Update progress and escalate high-importance issues to PAT.
+
+##### DNOO Infra
+
+- Provide overall technical direction and key guidance to business and vendors.
+
+##### Enterprise Architect
+
+- Work and coordinate with the external vendor for implementation and testing.
+
+##### Group Security
+
+- Facilitate requirements workshops and deliver the architecture design.
+
+##### Data Services
+
+- Provide user requirements; review and sign off functional specification.
+
+##### System Custodian
+
+- Implement system and enhancement work.
+
+##### System Owner
+
+- Review, conduct, and sign off tests (e.g., DAT).
+
+##### Change Management
+
+- Support change management activities and ongoing operational support.
+
+### Risks
+
+The following risks and mitigations are captured for the enhancement program and should be reviewed and updated throughout delivery.
+
+| Item No. | Risk Description | Risk Level | Mitigation |
+| --- | --- | --- | --- |
+| 1 | Inter-project dependency: Enlight team is planning to use the same testing environment as the Enhancement Project. Our project schedule may need to include buffer on the testing & deployment timeline of Enlight. | High | TBC to discuss with the Enlight team. |
+| 2 | Vendor dependencies and resource constraints could push timelines. | High | Define clear milestones and vendor SLAs. Maintain buffer periods in the implementation schedule. Use agile delivery for incremental releases. |
+| 3 | Multiple system interfaces (OMS, ERP, etc.) may lead to integration failures or data inconsistencies. | Medium | Conduct early integration testing during development phase. Use standardized APIs and robust error-handling mechanisms. Engage vendors (e.g., SE) for joint validation sessions. |
+| 4 | Real-time updates between ADMS and GIS may fail, causing incorrect circuit or asset data. | Medium | Implement automated reconciliation checks. Schedule periodic audits of GIS and ADMS data. Maintain rollback procedures for critical updates. |
+| 5 | Enhancements may not fully meet safety or compliance standards. | Low | Involve compliance teams during design phase. Validate workflows against latest regulatory requirements. Update safety document templates and perform compliance UAT. |
+| 6 | Operational teams may resist new workflows or lack training. | Low | Develop comprehensive training programs and user guides. Conduct pilot deployments with feedback loops. Provide on-site support during initial rollout. |
+| 7 | Performance & scalability risks. | Medium | Conduct load testing before full deployment. Optimize database queries and caching mechanisms. Plan infrastructure upgrades for future scalability. |
 
 ## User Scenarios & Testing *(mandatory)*
 
