@@ -272,24 +272,24 @@ This section summarizes project governance, reporting lines, and role responsibi
 #### Organization Chart
 
 ```mermaid
-flowchart TD
-  PSC[DNOO Project Steering Committee (PSC)]
-  PEC[Project Execution Committee (PEC)]
-  PMO[PMO]
-  PAT[Project Assurance Team (PAT)]
+graph TD
+  PSC["DNOO Project Steering Committee (PSC)"]
+  PEC["Project Execution Committee (PEC)"]
+  PMO["PMO"]
+  PAT["Project Assurance Team (PAT)"]
 
-  PM[Project Manager]
-  IT[Implementation Team]
+  PM["Project Manager"]
+  IT["Implementation Team"]
 
-  ADMS[ADMS Team]
-  GIS[GIS Team]
-  INFRA[DNOO Infra]
-  EA[Enterprise Architect]
-  SEC[Group Security]
-  DATA[Data Services]
-  CUST[System Custodian]
-  OWNER[System Owner]
-  CM[Change Management]
+  ADMS["ADMS Team"]
+  GIS["GIS Team"]
+  INFRA["DNOO Infra"]
+  EA["Enterprise Architect"]
+  SEC["Group Security"]
+  DATA["Data Services"]
+  CUST["System Custodian"]
+  OWNER["System Owner"]
+  CM["Change Management"]
 
   %% Primary reporting line
   PEC --> PMO --> PM --> IT
@@ -304,9 +304,44 @@ flowchart TD
   IT --> CM
 
   %% Governance / assurance relationships (as referenced in the R&R escalation paths)
-  PSC -. "oversight" .-> PEC
-  PAT -. "assurance / escalations" .-> PMO
-  PAT -. "escalations" .-> PEC
+  PSC -.->|Oversight| PEC
+  PAT -.->|Assurance / escalations| PMO
+  PAT -.->|Escalations| PEC
+
+  %% Responsibilities (attached to each role)
+  PSC_R["Responsibilities: steering-level oversight; receive high-importance escalations"]
+  PEC_R["Responsibilities: oversight and direction; endorse major objective/milestone changes; approve customization items; advise on high-risk mitigations; resolve escalations"]
+  PMO_R["Responsibilities: governance on scope/budget/time; sign off quality plan/risk assessment/specifications; approve change requests; manage overall risk register; escalate high-importance issues to PSC/PEC"]
+  PAT_R["Responsibilities: project assurance function; escalation channel to PMO/PEC"]
+
+  PM_R["Responsibilities: deliver scope/schedule/budget/quality; coordinate implementation and testing; manage risks and reporting; prepare compliance documents"]
+  IT_R["Responsibilities: execute enhancements; validate change requests; consolidate user feedback; initiate process changes; provide ongoing support"]
+
+  ADMS_R["Responsibilities: deliver ADMS tasks and deliverables on schedule/budget/quality"]
+  GIS_R["Responsibilities: update progress; escalate high-importance issues to PAT"]
+  INFRA_R["Responsibilities: technical direction and guidance to business and vendors"]
+  EA_R["Responsibilities: coordinate with external vendor for implementation and testing"]
+  SEC_R["Responsibilities: facilitate requirements workshops; deliver architecture design"]
+  DATA_R["Responsibilities: provide user requirements; review and sign off functional specification"]
+  CUST_R["Responsibilities: implement system and enhancement work"]
+  OWNER_R["Responsibilities: review/conduct/sign off tests (e.g., DAT)"]
+  CM_R["Responsibilities: change management activities; rollout and ongoing support"]
+
+  PSC -.-> PSC_R
+  PEC -.-> PEC_R
+  PMO -.-> PMO_R
+  PAT -.-> PAT_R
+  PM -.-> PM_R
+  IT -.-> IT_R
+  ADMS -.-> ADMS_R
+  GIS -.-> GIS_R
+  INFRA -.-> INFRA_R
+  EA -.-> EA_R
+  SEC -.-> SEC_R
+  DATA -.-> DATA_R
+  CUST -.-> CUST_R
+  OWNER -.-> OWNER_R
+  CM -.-> CM_R
 ```
 
 #### Responsibilities by Role
