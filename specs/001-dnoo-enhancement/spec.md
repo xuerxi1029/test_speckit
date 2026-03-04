@@ -330,18 +330,18 @@ flowchart TB
   %% =========================
   %% Responsibilities (from R&R CSV)
   %% =========================
-  PEC_RESP["Responsibilities (R&R)<br/>Provide oversight, guidance, and direction to the DNOO project implementation<br/>Endorse significant changes on the project objectives and milestone<br/>Provide advice on high risk items and mitigation measures<br/>Resolve issue as escalated by Project Assurance Team / Project Execution Committee<br/>Approval of the customization items"]
-  PMO_RESP["Responsibilities (R&R)<br/>Provide vision and guidance to the Enhancement project implementation<br/>Provide project governance to the overall project implementation<br/>Decide on matters of scope, budget and timeframe<br/>Ensure all milestones being met on schedule, budget and quality<br/>Identify, manage and update the overall risk registers<br/>Provide advice on high risk items and mitigation measures<br/>Resolve issue as escalated by Project Assurance Team<br/>Signoff quality plan, risk assessment, functional and technical specification<br/>Assure all the project execution related compliance documents being endorsed<br/>Approve Change Request<br/>Members will attend meetings on a need basis"]
-  PM_RESP["Responsibilities (R&R)<br/>Lead and ensure the overall project met on scope, schedule, budget and quality<br/>Work and co-ordinate with the implementation team for implementation and testing<br/>Identify and manage risks<br/>Update progress and escalate issue of high importance to PAT/PEC<br/>Review and prepare all the project execution related compliance documents being endorsed"]
+  PEC_RESP["Responsibilities<br/>Provide oversight, guidance, and direction to the DNOO project implementation<br/>Endorse significant changes on the project objectives and milestone<br/>Provide advice on high risk items and mitigation measures<br/>Resolve issue as escalated by Project Assurance Team / Project Execution Committee<br/>Approval of the customization items"]
+  PMO_RESP["Responsibilities<br/>Provide vision and guidance to the Enhancement project implementation<br/>Provide project governance to the overall project implementation<br/>Decide on matters of scope, budget and timeframe<br/>Ensure all milestones being met on schedule, budget and quality<br/>Identify, manage and update the overall risk registers<br/>Provide advice on high risk items and mitigation measures<br/>Resolve issue as escalated by Project Assurance Team<br/>Signoff quality plan, risk assessment, functional and technical specification<br/>Assure all the project execution related compliance documents being endorsed<br/>Approve Change Request<br/>Members will attend meetings on a need basis"]
+  PM_RESP["Responsibilities<br/>Lead and ensure the overall project met on scope, schedule, budget and quality<br/>Work and co-ordinate with the implementation team for implementation and testing<br/>Identify and manage risks<br/>Update progress and escalate issue of high importance to PAT/PEC<br/>Review and prepare all the project execution related compliance documents being endorsed"]
 
-  ADMS_RESP["Responsibilities (R&R)<br/>Lead and ensure the respective project deliverables and tasks met on schedule, budget and quality"]
-  GIS_RESP["Responsibilities (R&R)<br/>Update progress and escalate issue of high importance to PAT"]
-  INFRA_RESP["Responsibilities (R&R)<br/>Provide overall technical direction and key guidance to business and vendors"]
-  EA_RESP["Responsibilities (R&R)<br/>Work and co-ordinate with the external vendor for implementation and testing"]
-  SEC_RESP2["Responsibilities (R&R)<br/>Facilitate requirements workshop and deliver the architecture design"]
-  DATA_RESP["Responsibilities (R&R)<br/>Provide user requirement, review and signoff functional specification"]
-  CUST_RESP["Responsibilities (R&R)<br/>Implementation of system/ enhancement work"]
-  OWNER_RESP["Responsibilities (R&R)<br/>Review, conduct & sign off test such as DAT"]
+  ADMS_RESP["Responsibilities<br/>Lead and ensure the respective project deliverables and tasks met on schedule, budget and quality"]
+  GIS_RESP["Responsibilities<br/>Update progress and escalate issue of high importance to PAT"]
+  INFRA_RESP["Responsibilities<br/>Provide overall technical direction and key guidance to business and vendors"]
+  EA_RESP["Responsibilities<br/>Work and co-ordinate with the external vendor for implementation and testing"]
+  SEC_RESP2["Responsibilities<br/>Facilitate requirements workshop and deliver the architecture design"]
+  DATA_RESP["Responsibilities<br/>Provide user requirement, review and signoff functional specification"]
+  CUST_RESP["Responsibilities<br/>Implementation of system/ enhancement work"]
+  OWNER_RESP["Responsibilities<br/>Review, conduct & sign off test such as DAT"]
 
   PEC_ROLE --> PEC_RESP
   PMO_ROLE --> PMO_RESP
