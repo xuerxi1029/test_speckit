@@ -85,122 +85,29 @@ The 2026 Enhancement Project for GIS will deliver a comprehensive set of enhance
 - Development of a workflow to export relevant landbase information with each permit application.
 - Implementation of a mechanism for more frequent or real-time updates of landbase data from the Lands Department.
 
-通俗版说明：（挖掘许可证申请优化）
-让挖掘许可证的申请少靠人记、少查资料、资料更准确。
-
-把不同类型的土地资料统一整合进 GIS
-
-GIS（Geographic Information System）：一个用地图方式管理土地、设施和位置资料的系统
-包括：
-
-私人地段（private lot）
-GLL（Government Land Licenses）：政府发出的临时土地使用许可
-GLA（Government Land Allocations）：政府分配的土地使用安排
-STT（Short Term Tenancies）：短期租用政府土地
-项目施工范围（project limits）
-
-建立一套流程：
-👉 每次提交挖掘许可证时，系统会自动把相关土地资料一起导出，不用再人工拼资料。
-
-从 Lands Department（地政总署）更频密、甚至接近实时地更新土地资料，
-👉 减少“用旧资料申请”的风险。
-
 
 2. Circuit Reporting Enhancements
 - Implementation of logic to automatically adjust segment length proportionally when electric lines are split or vertices are edited.
 - Default assignment of segment length equal to sharp length upon circuit creation, with user override capability.
 - Development of circuit analysis report to facilitate a structured and risk‑based approach to 11 kV cable and joint replacement planning.
 
-通俗版说明：（线路与回路报表优化）
-让电缆线路的数据自动算对、少出错、方便做风险分析。
-
-
-当一条电线被拆分，或地图上的转折点（vertices）被修改时，
-👉 系统会自动按比例调整每一段的长度，不用人工重算。
-
-
-新建 circuit（电力回路）时：
-
-系统默认用 sharp length 作为 segment length
-使用者仍然可以手动修改
-
-
-sharp length：按电缆实际铺设路径计算的长度（不是直线距离）
-segment length: 一段线路（segment）的长度 (一条电缆或线路，被切成一小段之后，这一小段本身有多长)
-
-
-建立一份 circuit analysis report（回路分析报告），
-👉 用来支持 11 kV 电缆和接头（joint）更换计划，
-👉 做到有结构、有风险优先次序，而不是凭经验决定。
 
 3. Common Cable Infrastructure (CCI) Inventory Automation
 - Establishment of containment relationships between CCI assets (e.g., cable bridges, tunnels) and the circuits they contain.
 - Automation of inventory updates and report generation based on GIS data changes.
 
-（CCI 公共电缆设施资产自动化管理）
-通俗版说明：
-让系统知道：哪条电缆在哪个通道里，不用人工对表。
-
-
-在系统中建立 CCI 资产 和 电力回路（circuits） 之间的“包含关系”：
-
-例如：
-
-cable bridge（电缆桥）
-tunnel（隧道）
-里面实际装了哪些电缆
-
-
-当 GIS 里的资料有更新时：
-👉 库存数据和相关报表会自动更新并重新生成，
-👉 减少人工维护资产清单。
 
 4. 22kV Network Configuration
 - Configuration of GIS to support 22kV network visualization, including symbology and equipment catalogues.
 - Update of network model parameters to accommodate 22kV assets and operations.
 
-（22kV 电网配置支持）
-通俗版说明：
-让系统“看得懂、画得出、管得到”22kV 电网。
-
-
-配置 GIS，让它可以正确显示 22kV 网络，包括：
-
-线路图样（symbology）
-设备目录（equipment catalogues）
-
-
-更新 network model（电网模型）的参数，
-👉 确保系统在分析和操作上，能正确支持 22kV 设备和运行方式。
 
 5. Automation of High-Impact Manual Workarounds
 - Development of functionality to automatically generate Name and Alias fields used by ADMS.
 - Identification and implementation of other high-effort manual processes that can be automated within GIS.
 - Implementing a centralized session monitoring mechanism for ArcGIS to allow users tracking the status of their sessions after submission and approval.
 
-（高影响人工 workaround 的自动化）
-通俗版说明：
-把现在最花人力、最容易出错的“人工顶着做”流程自动化。
 
-
-自动生成 Name 和 Alias fields，供 ADMS 使用
-
-ADMS（Advanced Distribution Management System）：用于配电网络运行、监控和调度的系统
-Alias field：给系统用的“别名字段”，让不同系统之间能对得上字段名称
-
-
-找出其他目前很花人力、但可以自动化的 GIS 操作流程，并逐步实现自动化。
-
-在 ArcGIS 中建立一个统一的 session 监控机制：
-
-session：用户一次提交或操作的系统处理过程
-👉 用户在提交和审批之后，可以清楚看到：
-
-
-自己的处理进度
-是否还在跑
-有没有出问题
-而不是“交了之后只能等”。
 
 ##### Detailed Objectives
 
