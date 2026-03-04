@@ -272,47 +272,54 @@ This section summarizes project governance, reporting lines, and role responsibi
 #### Organization Chart
 
 ```mermaid
+%%{init: {'flowchart': {'curve': 'linear'}} }%%
 flowchart TB
 
   %% --- Governance chain (roles) ---
   subgraph GOV[" "]
     direction TB
-    PEC_ROLE["PEC<br/>Tony Kwok<br/>Manisha (Chair)<br/>Vivian Leung (GIS)<br/>CM Lok (ADMS)"]
-    PMO_ROLE["PMO (PAT)<br/>Mike Ng<br/>Kelvin Chan<br/>CK Chan (GIS)<br/>TBC (ADMS)"]
-    PM_ROLE["Project Manager<br/>Adrian Poon (Digital Project)<br/>Wong Lap Shun (GIS)<br/>Ho Kai On (ADMS)"]
-    IT_ROLE["Implementation Team"]
-    PEC_ROLE --> PMO_ROLE --> PM_ROLE --> IT_ROLE
+    PEC_ROLE["PEC<br/>Scope: GIS & ADMS<br/>Tony Kwok<br/>Manisha (Chair)<br/>Vivian Leung (GIS)<br/>CM Lok (ADMS)"]
+    PMO_ROLE["PMO (PAT)<br/>Scope: GIS & ADMS<br/>Mike Ng<br/>Kelvin Chan<br/>CK Chan (GIS)<br/>TBC (ADMS)"]
+    PM_ROLE["Project Manager<br/>Scope: GIS & ADMS<br/>Adrian Poon (Digital Project)<br/>Wong Lap Shun (GIS)<br/>Ho Kai On (ADMS)"]
+    IT_ROLE["Implementation Team<br/>Scope: GIS & ADMS"]
+
+    PEC_ROLE -->|Governance / Oversight| PMO_ROLE
+    PMO_ROLE -->|Governance / Direction| PM_ROLE
+    PM_ROLE -->|Leads delivery| IT_ROLE
   end
 
   %% --- Delivery teams (arranged left-to-right to reduce crossings) ---
   subgraph TEAMS[" "]
     direction LR
-    ADMS_ROLE["ADMS Team<br/>Business PM: Ho Kai On<br/>Technical Lead: Human Tang (TBC)<br/>Engineer Lead: Phillip Tam; Frank Tong<br/>SME (Function and Business Improvement): Phillip Tam; Frank Tong<br/>Process Change (Change Management): Thomas Tam<br/>BA: TBC"]
-    GIS_ROLE["GIS Team<br/>Business PM: Wong Lap Shun<br/>Technical Lead: Ceci Chung; Jason Wu (TBC)<br/>Engineer Lead: Ricky Lee Lap Hung<br/>SME (Function and Business Improvement): Ricky Lee Lap Hung; Harvey Hung<br/>Process Change (Change Management): Thomas Tam<br/>BA: Karie Chan (SBA)"]
-    INFRA_ROLE["DNOO Infra<br/>Patrick Cheung (consultation)"]
-    EA_ROLE["Enterprise Architect<br/>Jimmy Chan (consultation)"]
-    SEC_ROLE["Group Security<br/>Dennis Ng (GIS)<br/>Dan Tung (ADMS)<br/>Franky Shiu (GIS and ADMS)"]
-    DATA_ROLE["Data Services<br/>Colin Cheng (TBC)"]
-    CUST_ROLE["System Custodian<br/>Kelvin Chan"]
-    OWNER_ROLE["System Owner<br/>Vivian Leung (GIS)<br/>CM Lok (ADMS)"]
-    CM_ROLE["Change Management<br/>Thomas Tam"]
+    ADMS_ROLE["ADMS Team<br/>Scope: ADMS<br/>Business PM: Ho Kai On<br/>Technical Lead: Human Tang (TBC)<br/>Engineer Lead: Phillip Tam; Frank Tong<br/>SME (Function and Business Improvement): Phillip Tam; Frank Tong<br/>Process Change (Change Management): Thomas Tam<br/>BA: TBC"]
+    GIS_ROLE["GIS Team<br/>Scope: GIS<br/>Business PM: Wong Lap Shun<br/>Technical Lead: Ceci Chung; Jason Wu (TBC)<br/>Engineer Lead: Ricky Lee Lap Hung<br/>SME (Function and Business Improvement): Ricky Lee Lap Hung; Harvey Hung<br/>Process Change (Change Management): Thomas Tam<br/>BA: Karie Chan (SBA)"]
+    INFRA_ROLE["DNOO Infra<br/>Scope: GIS & ADMS<br/>Patrick Cheung (consultation)"]
+    EA_ROLE["Enterprise Architect<br/>Scope: GIS & ADMS<br/>Jimmy Chan (consultation)"]
+    SEC_ROLE["Group Security<br/>Scope: GIS & ADMS<br/>Dennis Ng (GIS)<br/>Dan Tung (ADMS)<br/>Franky Shiu (GIS and ADMS)"]
+    DATA_ROLE["Data Services<br/>Scope: GIS & ADMS<br/>Colin Cheng (TBC)"]
+    CUST_ROLE["System Custodian<br/>Scope: GIS & ADMS<br/>Kelvin Chan"]
+    OWNER_ROLE["System Owner<br/>Scope: GIS & ADMS<br/>Vivian Leung (GIS)<br/>CM Lok (ADMS)"]
+    CM_ROLE["Change Management<br/>Scope: GIS & ADMS<br/>Thomas Tam"]
   end
 
-  %% --- Vendor (placed to the right; dotted relationships) ---
-  V_ROLE["Vendor (SE)<br/>Jon Hew (PM)<br/>Kenny To (GIS Support)<br/>Alex Tong (Contract and Finance)<br/>SE team: Novi Sad, Serbia"]
+  %% --- Vendor (kept to the right to avoid crossings) ---
+  subgraph VENDOR[" "]
+    direction LR
+    V_ROLE["Vendor (SE)<br/>Scope: GIS & ADMS<br/>Jon Hew (PM)<br/>Kenny To (GIS Support)<br/>Alex Tong (Contract and Finance)<br/>SE team: Novi Sad, Serbia"]
+  end
 
-  IT_ROLE --> ADMS_ROLE
-  IT_ROLE --> GIS_ROLE
-  IT_ROLE --> INFRA_ROLE
-  IT_ROLE --> EA_ROLE
-  IT_ROLE --> SEC_ROLE
-  IT_ROLE --> DATA_ROLE
-  IT_ROLE --> CUST_ROLE
-  IT_ROLE --> OWNER_ROLE
-  IT_ROLE --> CM_ROLE
+  IT_ROLE -->|Workstream delivery| ADMS_ROLE
+  IT_ROLE -->|Workstream delivery| GIS_ROLE
+  IT_ROLE -->|Consultation| INFRA_ROLE
+  IT_ROLE -->|Architecture support| EA_ROLE
+  IT_ROLE -->|Security assurance| SEC_ROLE
+  IT_ROLE -->|Data requirements| DATA_ROLE
+  IT_ROLE -->|Build / configuration| CUST_ROLE
+  IT_ROLE -->|Test sign-off| OWNER_ROLE
+  IT_ROLE -->|Org change / rollout| CM_ROLE
 
-  PM_ROLE -.-> V_ROLE
-  EA_ROLE -.-> V_ROLE
+  PM_ROLE -.->|Collaboration (delivery coordination)| V_ROLE
+  EA_ROLE -.->|Collaboration (implementation and testing)| V_ROLE
 
   %% --- Responsibilities (paired with each role) ---
   PEC_RESP["Oversight and direction<br/>Endorse major objective/milestone changes<br/>Advise on high-risk mitigations<br/>Approve customization items<br/>Resolve escalations from PMO (PAT)"]
@@ -369,11 +376,14 @@ flowchart TB
   %% Hide subgraph borders (visual polish)
   style GOV fill:transparent,stroke:transparent
   style TEAMS fill:transparent,stroke:transparent
+  style VENDOR fill:transparent,stroke:transparent
 ```
 
 #### Responsibilities by Role
 
 ##### PMO (PAT)
+
+**Scope**: GIS & ADMS
 
 **Name list**: Mike Ng; Kelvin Chan; CK Chan (GIS); TBC (ADMS)
 
@@ -391,6 +401,8 @@ flowchart TB
 
 ##### Project Executive Committee (PEC)
 
+**Scope**: GIS & ADMS
+
 **Name list**: Tony Kwok; Manisha (Chair); Vivian Leung (GIS); CM Lok (ADMS)
 
 - Provide oversight, guidance, and direction to the DNOO project implementation.
@@ -401,6 +413,8 @@ flowchart TB
 
 ##### Project Manager
 
+**Scope**: GIS & ADMS
+
 **Name list**: Adrian Poon (Digital Project); Wong Lap Shun (GIS); Ho Kai On (ADMS)
 
 - Lead and ensure the overall project is delivered to scope, schedule, budget, and quality.
@@ -410,6 +424,8 @@ flowchart TB
 - Review and prepare project execution-related compliance documents for endorsement.
 
 ##### Implementation Team (Overall)
+
+**Scope**: GIS & ADMS
 
 **Name list**: ADMS Team; GIS Team; DNOO Infra; Enterprise Architect; Group Security; Data Services; System Custodian; System Owner; Change Management
 
@@ -422,11 +438,15 @@ flowchart TB
 
 ##### ADMS Team
 
+**Scope**: ADMS
+
 **Name list**: Business PM: Ho Kai On; Technical Lead: Human Tang (TBC); Engineer Lead: Phillip Tam; Frank Tong; SME (Function and Business Improvement): Phillip Tam; Frank Tong; Process Change (Change Management): Thomas Tam; BA: TBC
 
 - Lead and ensure ADMS deliverables and tasks are met on schedule, budget, and quality.
 
 ##### GIS Team
+
+**Scope**: GIS
 
 **Name list**: Business PM: Wong Lap Shun; Technical Lead: Ceci Chung; Jason Wu (TBC); Engineer Lead: Ricky Lee Lap Hung; SME (Function and Business Improvement): Ricky Lee Lap Hung; Harvey Hung; Process Change (Change Management): Thomas Tam; BA: Karie Chan (SBA)
 
@@ -434,11 +454,15 @@ flowchart TB
 
 ##### DNOO Infra
 
+**Scope**: GIS & ADMS
+
 **Name list**: Patrick Cheung (consultation)
 
 - Provide overall technical direction and key guidance to business and vendors.
 
 ##### Enterprise Architect
+
+**Scope**: GIS & ADMS
 
 **Name list**: Jimmy Chan (consultation)
 
@@ -446,11 +470,15 @@ flowchart TB
 
 ##### Group Security
 
+**Scope**: GIS & ADMS
+
 **Name list**: Dennis Ng (GIS); Dan Tung (ADMS); Franky Shiu (GIS and ADMS)
 
 - Facilitate requirements workshops and deliver the architecture design.
 
 ##### Data Services
+
+**Scope**: GIS & ADMS
 
 **Name list**: Colin Cheng (TBC)
 
@@ -458,11 +486,15 @@ flowchart TB
 
 ##### System Custodian
 
+**Scope**: GIS & ADMS
+
 **Name list**: Kelvin Chan
 
 - Implement system and enhancement work.
 
 ##### System Owner
+
+**Scope**: GIS & ADMS
 
 **Name list**: Vivian Leung (GIS); CM Lok (ADMS)
 
@@ -470,11 +502,15 @@ flowchart TB
 
 ##### Change Management
 
+**Scope**: GIS & ADMS
+
 **Name list**: Thomas Tam
 
 - Support change management activities and ongoing operational support.
 
 ##### Vendor (SE)
+
+**Scope**: GIS & ADMS
 
 **Name list**: Jon Hew (PM); Kenny To (GIS Support); Alex Tong (Contract and Finance); SE team: Novi Sad, Serbia
 
