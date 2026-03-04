@@ -271,120 +271,54 @@ This section summarizes project governance, reporting lines, and role responsibi
 
 #### Organization Chart
 
-```mermaid
-graph TD
-  PSC["DNOO Project Steering Committee (PSC)"]
-  PEC["Project Execution Committee (PEC)"]
-  PMO["PMO"]
-  PAT["Project Assurance Team (PAT)"]
-
-  PM["Project Manager"]
-  IT["Implementation Team"]
-
-  ADMS["ADMS Team"]
-  GIS["GIS Team"]
-  INFRA["DNOO Infra"]
-  EA["Enterprise Architect"]
-  SEC["Group Security"]
-  DATA["Data Services"]
-  CUST["System Custodian"]
-  OWNER["System Owner"]
-  CM["Change Management"]
-
-  %% Primary reporting line
-  PEC --> PMO --> PM --> IT
-  IT --> ADMS
-  IT --> GIS
-  IT --> INFRA
-  IT --> EA
-  IT --> SEC
-  IT --> DATA
-  IT --> CUST
-  IT --> OWNER
-  IT --> CM
-
-  %% Governance / assurance relationships (as referenced in the R&R escalation paths)
-  PSC -.->|Oversight| PEC
-  PAT -.->|Assurance / escalations| PMO
-  PAT -.->|Escalations| PEC
-
-  %% Responsibilities (attached to each role)
-  PSC_R["Responsibilities: steering-level oversight; receive high-importance escalations"]
-  PEC_R["Responsibilities: oversight and direction; endorse major objective/milestone changes; approve customization items; advise on high-risk mitigations; resolve escalations"]
-  PMO_R["Responsibilities: governance on scope/budget/time; sign off quality plan/risk assessment/specifications; approve change requests; manage overall risk register; escalate high-importance issues to PSC/PEC"]
-  PAT_R["Responsibilities: project assurance function; escalation channel to PMO/PEC"]
-
-  PM_R["Responsibilities: deliver scope/schedule/budget/quality; coordinate implementation and testing; manage risks and reporting; prepare compliance documents"]
-  IT_R["Responsibilities: execute enhancements; validate change requests; consolidate user feedback; initiate process changes; provide ongoing support"]
-
-  ADMS_R["Responsibilities: deliver ADMS tasks and deliverables on schedule/budget/quality"]
-  GIS_R["Responsibilities: update progress; escalate high-importance issues to PAT"]
-  INFRA_R["Responsibilities: technical direction and guidance to business and vendors"]
-  EA_R["Responsibilities: coordinate with external vendor for implementation and testing"]
-  SEC_R["Responsibilities: facilitate requirements workshops; deliver architecture design"]
-  DATA_R["Responsibilities: provide user requirements; review and sign off functional specification"]
-  CUST_R["Responsibilities: implement system and enhancement work"]
-  OWNER_R["Responsibilities: review/conduct/sign off tests (e.g., DAT)"]
-  CM_R["Responsibilities: change management activities; rollout and ongoing support"]
-
-  PSC -.-> PSC_R
-  PEC -.-> PEC_R
-  PMO -.-> PMO_R
-  PAT -.-> PAT_R
-  PM -.-> PM_R
-  IT -.-> IT_R
-  ADMS -.-> ADMS_R
-  GIS -.-> GIS_R
-  INFRA -.-> INFRA_R
-  EA -.-> EA_R
-  SEC -.-> SEC_R
-  DATA -.-> DATA_R
-  CUST -.-> CUST_R
-  OWNER -.-> OWNER_R
-  CM -.-> CM_R
+```text
+PEC (Project Execution Committee)
+└─ PMO (PAT)
+  └─ Project Manager
+    └─ Implementation Team
+      ├─ ADMS Team
+      ├─ GIS Team
+      ├─ DNOO Infra
+      ├─ Enterprise Architect
+      ├─ Group Security
+      ├─ Data Services
+      ├─ System Custodian
+      ├─ System Owner
+      └─ Change Management
 ```
+
+Escalation path (when needed): Implementation Team → Project Manager → PMO (PAT) → PEC.
 
 #### Responsibilities by Role
 
-##### DNOO Project Steering Committee (PSC)
+##### PMO (PAT)
 
-- Provide steering-level oversight as part of the governance escalation path.
-- Receive progress updates and high-importance issue escalations (via PMO) as required.
-
-##### Project Assurance Team (PAT)
-
-- Act as a project assurance and escalation channel for high-importance issues.
-- Escalate issues to PMO and/or PEC as required.
+- Provide vision and guidance to the enhancement project implementation.
+- Provide project governance to the overall project implementation.
+- Decide on matters of scope, budget, and timeframe.
+- Ensure milestones are met on schedule, budget, and quality.
+- Identify, manage, and update the overall risk registers.
+- Provide advice on high-risk items and mitigation measures.
+- Resolve issues as escalated (project assurance / escalations).
+- Sign off quality plan, risk assessment, functional specification, and technical specification.
+- Assure all project execution-related compliance documents are endorsed.
+- Approve change requests.
+- Members attend meetings on a need basis (e.g., critical decisions, procurement stage, design & implementation stage).
 
 ##### Project Execution Committee (PEC)
 
 - Provide oversight, guidance, and direction to the DNOO project implementation.
 - Endorse significant changes to project objectives and milestones.
 - Provide advice on high-risk items and mitigation measures.
-- Resolve issues as escalated by the Project Assurance Team (PAT) / Project Execution Committee.
+- Resolve issues as escalated by PMO (PAT).
 - Approve customization items.
-
-##### PMO
-
-- Provide vision and guidance to the enhancement project implementation.
-- Provide advice on high-risk items and mitigation measures.
-- Resolve issues as escalated by the Project Assurance Team (PAT).
-- Sign off quality plan, risk assessment, functional specification, and technical specification.
-- Assure project execution-related compliance documents are endorsed.
-- Approve change requests.
-- Provide project governance to the overall project implementation.
-- Decide on matters of scope, budget, and timeframe.
-- Ensure milestones are met on schedule, budget, and quality.
-- Align and resolve issues escalated by each project champion.
-- Update progress and escalate high-importance issues to DNOO PSC/PEC.
-- Identify, manage, and maintain the overall risk register.
 
 ##### Project Manager
 
 - Lead and ensure the overall project is delivered to scope, schedule, budget, and quality.
 - Coordinate with the implementation team for implementation and testing.
 - Identify and manage risks.
-- Update progress and escalate high-importance issues to PAT/PEC/PSC.
+- Update progress and escalate high-importance issues to PMO (PAT) / PEC.
 - Review and prepare project execution-related compliance documents for endorsement.
 
 ##### Implementation Team (Overall)
@@ -402,7 +336,7 @@ graph TD
 
 ##### GIS Team
 
-- Update progress and escalate high-importance issues to PAT.
+- Update progress and escalate high-importance issues to PMO (PAT).
 
 ##### DNOO Infra
 
