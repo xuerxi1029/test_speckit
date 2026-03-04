@@ -272,7 +272,6 @@ This section summarizes project governance, reporting lines, and role responsibi
 #### Organization Chart
 
 ```mermaid
-%%{init: {'flowchart': {'curve': 'linear'}} }%%
 flowchart TB
 
   %% --- Governance chain (roles) ---
@@ -283,12 +282,17 @@ flowchart TB
     PM_ROLE["Project Manager<br/>Scope: GIS & ADMS<br/>Adrian Poon (Digital Project)<br/>Wong Lap Shun (GIS)<br/>Ho Kai On (ADMS)"]
     IT_ROLE["Implementation Team<br/>Scope: GIS & ADMS"]
 
-    PEC_ROLE -->|Governance / Oversight| PMO_ROLE
-    PMO_ROLE -->|Governance / Direction| PM_ROLE
+    PEC_ROLE -->|Governance - Oversight| PMO_ROLE
+    PMO_ROLE -->|Governance - Direction| PM_ROLE
     PM_ROLE -->|Leads delivery| IT_ROLE
   end
 
-  %% --- Delivery teams (arranged left-to-right to reduce crossings) ---
+   # check for Spec Kit config folders
+  find /workspaces/test_speckit -maxdepth 4 -type d -name ".specify"
+  
+  # check whether a Spec Kit CLI is installed (if your workflow uses it)
+  command -v specify || echo "specify not found on PATH"
+  command -v spec-kit || echo "spec-kit not found on PATH" %% --- Delivery teams (arranged left-to-right to reduce crossings) ---
   subgraph TEAMS[" "]
     direction LR
     ADMS_ROLE["ADMS Team<br/>Scope: ADMS<br/>Business PM: Ho Kai On<br/>Technical Lead: Human Tang (TBC)<br/>Engineer Lead: Phillip Tam; Frank Tong<br/>SME (Function and Business Improvement): Phillip Tam; Frank Tong<br/>Process Change (Change Management): Thomas Tam<br/>BA: TBC"]
@@ -314,12 +318,12 @@ flowchart TB
   IT_ROLE -->|Architecture support| EA_ROLE
   IT_ROLE -->|Security assurance| SEC_ROLE
   IT_ROLE -->|Data requirements| DATA_ROLE
-  IT_ROLE -->|Build / configuration| CUST_ROLE
+  IT_ROLE -->|Build - configuration| CUST_ROLE
   IT_ROLE -->|Test sign-off| OWNER_ROLE
-  IT_ROLE -->|Org change / rollout| CM_ROLE
+  IT_ROLE -->|Org change - rollout| CM_ROLE
 
-  PM_ROLE -.->|Collaboration (delivery coordination)| V_ROLE
-  EA_ROLE -.->|Collaboration (implementation and testing)| V_ROLE
+  PM_ROLE -.->|Collaboration - delivery coordination| V_ROLE
+  EA_ROLE -.->|Collaboration - implementation and testing| V_ROLE
 
   %% --- Responsibilities (paired with each role) ---
   PEC_RESP["Oversight and direction<br/>Endorse major objective/milestone changes<br/>Advise on high-risk mitigations<br/>Approve customization items<br/>Resolve escalations from PMO (PAT)"]
