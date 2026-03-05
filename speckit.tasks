@@ -1,0 +1,102 @@
+# DNOO Enhancement — Quick Familiarization Tasks (Non-technical)
+
+Source document: specs/001-dnoo-enhancement/internal.md
+
+## Plain-language summary (rephrased)
+
+### What this project is
+This is a follow-up improvement project for two systems:
+- ADMS: the system used to run and manage the power distribution network.
+- GIS: the map-based system that stores the “source of truth” for network assets and locations.
+
+### Why it is needed now
+GIS and ADMS were launched in 2025 under tight time and resource limits. To meet deadlines, some temporary fixes and manual workarounds were used.
+Now, business users are reporting gaps compared to the old GIS, and there are new needs from changed business processes and regulatory requirements.
+
+### What the project is trying to achieve (in simple terms)
+- Fix high-priority gaps and pain points.
+- Reduce manual steps that waste time and can cause mistakes.
+- Keep data accurate and systems stable.
+- Prepare for future changes (especially the 22kV network).
+
+### What is NOT included
+- Cleaning up old legacy data problems that were not handled before.
+- Enhancements triggered directly by the Enlight (ERP) project.
+- “Product enhancements” or unfinished bugs from the original GIS project.
+- Broad integration work beyond GIS and ADMS.
+
+### What will be delivered (high level)
+ADMS improvements (examples):
+- Better outage workflow integration.
+- Support for 22kV operations over time.
+- More automation for switching plan updates.
+- Better handling of complex outage scenarios.
+- Compliance-related workflow improvements.
+
+GIS improvements (5 main areas):
+1) Excavation permit improvements: include more land data and export what’s needed automatically.
+2) Circuit reporting improvements: make cable length updates automatic and produce better reports for replacement planning.
+3) CCI inventory automation: track which cables are in which tunnels/bridges and keep reports updated automatically.
+4) 22kV network configuration: make GIS able to display and manage 22kV assets correctly.
+5) Automate “manual workarounds”: reduce repeated manual steps (for example, auto-generate Name/Alias fields for ADMS).
+
+### High-level timeline (what to expect)
+- Planning & design happens first.
+- Development/configuration follows.
+- Testing (SIT/UAT/Pen Test) follows development.
+- There is an “Enlight freeze period” that may impact timing (still TBC).
+- Later phases include a 22kV pilot and then full deployment/optimization.
+
+### Who is involved (governance and teams)
+- PEC (Project Executive Committee) provides oversight.
+- PMO (PAT) provides governance and direction.
+- Project Manager leads delivery.
+- Two main delivery workstreams: ADMS and GIS.
+- Shared support functions: Infra, Enterprise Architect, Cyber Security, Data Services, System Custodian, System Owner.
+- Vendor (SE) supports delivery (names listed in the source document).
+
+### Key risks (simple view)
+- Dependencies on Enlight testing environments and timing.
+- Vendor capacity and scheduling risks.
+- Integration risks across multiple systems.
+- Data synchronization issues between ADMS and GIS.
+- Compliance/safety readiness.
+- User adoption and training.
+- Performance/scalability.
+
+## Task checklist (do these to get up to speed quickly)
+
+### A. Understand the “why” and boundaries
+- [ ] Read “Background” and “Rationale / Why Now” in internal.md.
+- [ ] Confirm the 6 overall goals in plain words with the business owner.
+- [ ] Confirm “Out of Scope” items so expectations are clear.
+
+### B. Understand what will be delivered
+- [ ] Review ADMS deliverables list; highlight which are most urgent.
+- [ ] Review GIS deliverables (5 areas); write 1 sentence per item about the business benefit.
+- [ ] Confirm which deliverables are mandatory for regulatory compliance.
+
+### C. Confirm who decides what (governance)
+- [ ] Note PEC members and what they approve.
+- [ ] Note PMO (PAT) members and what they approve.
+- [ ] Note the Project Manager(s) and their day-to-day decision scope.
+
+### D. Validate timeline assumptions
+- [ ] Confirm what “M” means (project start month) and who owns the schedule.
+- [ ] Confirm the Enlight freeze period timing and its impact.
+- [ ] Confirm when the 22kV pilot is expected.
+
+### E. Review risks and what to watch
+- [ ] Review the risk table; pick the top 3 risks to track weekly.
+- [ ] Confirm owners for each mitigation (who will do the action).
+
+### F. Fill the missing “mandatory” spec parts (so the document is complete)
+- [ ] Write 3–6 user stories (P1/P2/P3) in non-technical language.
+- [ ] Turn deliverables into Functional Requirements (FR-001, FR-002, …).
+- [ ] Add Non-Functional Requirements (performance, security, reliability, compliance).
+- [ ] Define Success Criteria (measurable outcomes).
+- [ ] Capture Open Questions (anything unclear or waiting on TBC).
+
+### G. Prepare for stakeholder alignment
+- [ ] Create a 10-question list for your first alignment meeting (scope, priorities, timeline, risks).
+- [ ] Agree on a weekly reporting format (1 page: progress, next steps, risks, decisions needed).

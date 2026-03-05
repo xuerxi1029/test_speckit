@@ -56,25 +56,67 @@ The enhancement program delivers improvements across two primary workstreams:
 #### A. ADMS Enhancements
 
 1. OMS Workflow Integration
+
 Full integration of ATA triggering logic post-Enlight to streamline outage management.
 
+OMS 工作流程集成
+在 Enlight 系统之后，全面整合 ATA 的触发逻辑，让停电管理流程更加顺畅、高效。
+（OMS – Outage Management System：停电管理系统，用来处理和跟踪停电事件；
+Enlight：前端/上游的业务或监控系统；
+ATA (Automatic Trouble Analysis)：自动触发机制，用来在发生特定情况时自动启动停电处理流程，减少人工操作。）
+
 2. Voltage Level Expansion
+
 Support for 22kV networks (trial in Q1 2026, full rollout by 2029).
 
+电压等级扩展
+支持 22kV 电网运行（计划在 2026 年第一季度试点，目标在 2029 年全面推广），以覆盖更大范围的供电需求。
+（22kV：一种常见的中压供电等级，通常用于区域供电或工业用电。）
+
 3. Automation of Switching Plan State Transitions
+
 API-driven updates with OPS to reduce manual conflict checks and improve operational efficiency.
 
+切换计划状态自动化
+通过系统接口自动与 OPS 同步切换计划状态，减少人工检查冲突的工作，提高运行效率。
+（API – Application Programming Interface，系统接口：用于让不同系统自动交换数据；
+OPS – Operations System，运行操作系统：用于管理和执行电网的实际操作；
+Switching Plan：电网切换操作计划。）
+
 4. Multi-Stage Outage Support
+
 Enhanced handling of complex outage scenarios across ADMS and GIS.
 
+多阶段停电支持
+更好地支持和处理复杂的、多步骤的停电情况，并在不同系统之间保持信息一致。
+（ADMS – Advanced Distribution Management System，高级配电管理系统：用于监控和控制配电网运行；
+GIS – Geographic Information System，地理信息系统：通过地图方式展示电网、设备和位置关系。）
+
 5. Compliance and Efficiency Improvements
+
 Integration with ORMS for regulatory compliance and optimized workflows.
 
+合规与效率提升
+与 ORMS 系统集成，确保操作符合监管要求，同时优化内部工作流程。
+（ORMS – Outage Restoration Management System，停电恢复管理系统：用于规范停电恢复流程并满足合规要求。）
+
 6. Safety Document and UAT Enhancements
+
 Updated templates and JIRA-based issue tracking for user acceptance testing.
 
+安全文档与用户验收测试优化
+更新安全相关文档模板，并使用 JIRA 系统跟踪用户验收测试中发现的问题，提升测试和整改效率。
+（UAT – User Acceptance Testing，用户验收测试：由业务或最终用户确认系统是否符合使用需求；
+JIRA：常用的问题和任务跟踪工具。）
+
 7. Advanced Query Engine
+
 Support for Switching Management fields and clash-check logic.
+
+高级查询引擎
+提供更强大的查询功能，用于查找切换管理相关信息，并自动检查是否存在操作冲突。
+（Query Engine，查询引擎：用于快速搜索和分析系统数据；
+Clash-check，冲突检查：用于防止操作安排相互冲突或引发风险。）
 
 #### B. GIS Enhancements
 
